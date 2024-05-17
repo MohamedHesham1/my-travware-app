@@ -1,31 +1,34 @@
 import Link from 'next/link';
+import { useSearch } from '../_context/SearchContext';
+import { useCart } from '../_context/CartContext';
 
-export default function Navbar({ onChange, value, cartItems }) {
-  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-  const totalPrice = cartItems.reduce(
+export default function Navbar() {
+  const { search, handleSearch } = useSearch();
+  const { cart } = useCart();
+
+  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
 
   return (
-    <div className='navbar bg-base-100'>
+    <nav className='navbar bg-base-100'>
       <div className='flex-1'>
-        <Link className='btn btn-ghost text-xl' href='/'>
-          E2E Shop
+        <Link className='btn btn-ghost normal-case text-xl' href='/'>
+          TravWare
         </Link>
+        <input
+          type='text'
+          placeholder='Search'
+          value={search}
+          onChange={handleSearch}
+          className='input input-bordered w-full max-w-xs'
+        />
       </div>
-      <div className='flex-none gap-2'>
-        <div className='form-control'>
-          <input
-            type='text'
-            placeholder='Search'
-            className='input input-bordered w-24 md:w-auto'
-            onChange={onChange}
-            value={value}
-          />
-        </div>
+      <div className='flex-none'>
         <div className='dropdown dropdown-end'>
-          <div tabIndex={0} role='button' className='btn btn-ghost btn-circle'>
+          <button className='btn btn-ghost btn-circle'>
             <div className='indicator'>
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -38,14 +41,14 @@ export default function Navbar({ onChange, value, cartItems }) {
                   strokeLinecap='round'
                   strokeLinejoin='round'
                   strokeWidth='2'
-                  d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z'
+                  d='M3 3h2l.4 2M7 13h10l1.6-8H6.4M5 21h14a2 2 0 002-2v-12H3v12a2 2 0 002 2z'
                 />
               </svg>
               <span className='badge badge-sm indicator-item'>
                 {totalItems}
               </span>
             </div>
-          </div>
+          </button>
           <div
             tabIndex={0}
             className='mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow'
@@ -66,6 +69,6 @@ export default function Navbar({ onChange, value, cartItems }) {
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 }

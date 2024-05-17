@@ -1,40 +1,29 @@
 'use client';
 import { useEffect, useState } from 'react';
-import Navbar from './_components/Navbar';
-import ProductCard from './_components/ProductCard';
 import products from './_data/products.json';
+import { useSearch } from './_context/SearchContext';
+import ProductCard from './_components/ProductCard';
+import { useCart } from './_context/CartContext';
 
 export default function Home() {
-  const [items, setItems] = useState([]);
-  const [filteredItems, setFilteredItems] = useState([]);
-  const [search, setSearch] = useState('');
+  const { search } = useSearch();
+  const { cart, setCart } = useCart();
+  const [items, setItems] = useState(products);
+  const [filteredItems, setFilteredItems] = useState(products);
   const [sortOrder, setSortOrder] = useState('');
-  const [priceRange, setPriceRange] = useState([0, 100]);
-  const [cart, setCart] = useState(
-    localStorage.getItem('savedCart')
-      ? JSON.parse(localStorage.getItem('savedCart'))
-      : []
-  );
+  const [maxPrice, setMaxPrice] = useState(100);
+  const [priceRange, setPriceRange] = useState(100);
 
   useEffect(() => {
-    setItems(products);
-    setFilteredItems(products);
-
-    const savedCart = localStorage.getItem('savedCart');
-    if (savedCart) {
-      setCart(JSON.parse(savedCart));
-    }
-  }, []);
+    // Determine the maximum price from the product list
+    const maxProductPrice = Math.max(...products.map((item) => item.price));
+    setMaxPrice(maxProductPrice);
+    setPriceRange(maxProductPrice);
+  }, [products]);
 
   useEffect(() => {
-    localStorage.setItem('savedCart', JSON.stringify(cart));
-  }, [cart]);
-
-  const handleSearch = (e) => {
-    const query = e.target.value.toLowerCase();
-    setSearch(query);
-    filterItems(query, sortOrder, priceRange);
-  };
+    filterItems(search, sortOrder, priceRange);
+  }, [search, sortOrder, priceRange]);
 
   const handleSort = (e) => {
     const order = e.target.value;
@@ -42,10 +31,9 @@ export default function Home() {
     filterItems(search, order, priceRange);
   };
 
-  const handlePriceRange = (e) => {
-    const [min, max] = e.target.value.split('-').map(Number);
-    setPriceRange([min, max]);
-    filterItems(search, sortOrder, [min, max]);
+  const handlePriceRangeChange = (value) => {
+    setPriceRange(value);
+    filterItems(search, sortOrder, value);
   };
 
   const handleAddToCart = (item) => {
@@ -69,9 +57,7 @@ export default function Home() {
   const filterItems = (searchQuery, order, range) => {
     let filtered = items.filter(
       (item) =>
-        item.name.toLowerCase().includes(searchQuery) &&
-        item.price >= range[0] &&
-        item.price <= range[1]
+        item.name.toLowerCase().includes(searchQuery) && item.price <= range
     );
 
     if (order === 'price-asc') {
@@ -88,35 +74,43 @@ export default function Home() {
   };
 
   return (
-    <main>
-      <Navbar onChange={handleSearch} value={search} cartItems={cart} />
+    <main className='p-4'>
+      <div className='flex flex-col md:flex-row md:justify-between mb-4'>
+        <div className='form-control mb-4 md:mb-0'>
+          <label className='label'>
+            <span className='label-text'>Sort by:</span>
+          </label>
+          <select
+            onChange={handleSort}
+            className='select select-bordered w-full md:w-auto'
+          >
+            <option value=''>Select an option</option>
+            <option value='price-asc'>Price: Low to High</option>
+            <option value='price-desc'>Price: High to Low</option>
+            <option value='name-asc'>Name: A to Z</option>
+            <option value='name-desc'>Name: Z to A</option>
+          </select>
+        </div>
 
-      <div className='form-control'>
-        <select
-          onChange={handleSort}
-          className='input input-bordered w-24 md:w-auto'
-        >
-          <option value=''>Sort by</option>
-          <option value='price-asc'>Price: Low to High</option>
-          <option value='price-desc'>Price: High to Low</option>
-          <option value='name-asc'>Name: A to Z</option>
-          <option value='name-desc'>Name: Z to A</option>
-        </select>
+        <div className='form-control'>
+          <label className='label'>
+            <span className='label-text'>Filter by price:</span>
+          </label>
+          <input
+            type='range'
+            min='0'
+            max={maxPrice}
+            value={priceRange}
+            className='range range-primary'
+            onChange={(e) => handlePriceRangeChange(Number(e.target.value))}
+          />
+          <div className='text-center mt-2'>
+            <span className='badge badge-primary'>Up to ${priceRange}</span>
+          </div>
+        </div>
       </div>
 
-      <div className='form-control'>
-        <select
-          onChange={handlePriceRange}
-          className='input input-bordered w-24 md:w-auto'
-        >
-          <option value='0-100'>All Prices</option>
-          <option value='0-10'>0 - 10</option>
-          <option value='10-20'>10 - 20</option>
-          <option value='20-30'>20 - 30</option>
-        </select>
-      </div>
-
-      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-items-center gap-x-4 gap-y-8 p-4'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 gap-y-6'>
         {filteredItems.map((product) => (
           <ProductCard
             key={product.id}

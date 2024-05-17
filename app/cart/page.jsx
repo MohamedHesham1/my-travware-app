@@ -1,6 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState(
@@ -62,38 +63,57 @@ export default function Cart() {
   };
 
   return (
-    <div className='p-4'>
+    <div className='p-10 max-w-[1250px]'>
       <h2 className='text-2xl font-bold mb-4'>Shopping Cart</h2>
       <ul className='list-none'>
         {cartItems.map((item) => (
-          <li key={item.id} className='flex justify-between items-center mb-2'>
-            <div>
-              <p className='font-bold'>{item.name}</p>
-              <p>
-                ${item.price} x {item.quantity}
-              </p>
-            </div>
-            <div className='flex items-center'>
-              <button
-                className='btn btn-error mr-2'
-                onClick={() => handleRemove(item.id)}
-              >
-                Remove
-              </button>
-              <input
-                type='number'
-                value={item.quantity}
-                min='1'
-                max={item.inStock}
-                className='input input-bordered w-16'
-                onChange={(e) =>
-                  handleQuantityChange(item.id, parseInt(e.target.value))
-                }
-              />
+          <li key={item.id} className='mb-4'>
+            <div className='card bg-base-100 shadow-xl '>
+              <div className='card-body p-4 flex flex-col md:flex-row'>
+                <Image
+                  src={item.image}
+                  alt={item.name}
+                  className='w-full md:w-1/3 h-auto object-cover'
+                  width={200}
+                  height={200}
+                />
+                <div className='md:ml-4 flex-grow'>
+                  <div className='flex justify-between items-start'>
+                    <div>
+                      <p className='font-semibold text-lg'>{item.name}</p>
+                      <p className='text-sm text-gray-600'>
+                        ${item.price} x {item.quantity}
+                      </p>
+                    </div>
+                    <div className='flex items-center flex-wrap space-x-2'>
+                      <button
+                        className='btn btn-error btn-sm'
+                        onClick={() => handleRemove(item.id)}
+                      >
+                        Remove
+                      </button>
+                      <input
+                        type='number'
+                        value={item.quantity}
+                        min='1'
+                        max={item.inStock}
+                        className='input input-bordered input-sm w-[70px] text-center'
+                        onChange={(e) =>
+                          handleQuantityChange(
+                            item.id,
+                            parseInt(e.target.value)
+                          )
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </li>
         ))}
       </ul>
+
       <div className='flex justify-between items-center mt-4'>
         <p className='font-bold'>Total: ${total.toFixed(2)}</p>
         <button className='btn btn-primary' onClick={handleCheckout}>

@@ -1,16 +1,20 @@
-import { Inter } from 'next/font/google';
+'use client';
+import Navbar from './_components/Navbar';
+import { CartProvider } from './_context/CartContext';
+import { SearchProvider } from './_context/SearchContext';
 import './globals.css';
-
-const inter = Inter({ subsets: ['latin'] });
-
-export const metadata = {
-  title: 'Home Page',
-};
 
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body>
+        <SearchProvider>
+          <CartProvider>
+            <Navbar />
+            {children}
+          </CartProvider>
+        </SearchProvider>
+      </body>
     </html>
   );
 }
