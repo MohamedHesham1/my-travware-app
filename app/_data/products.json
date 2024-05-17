@@ -4,7 +4,7 @@
     "name": "Travel Backpack",
     "description": "A durable backpack perfect for your adventures",
     "price": 79.99,
-    "image": "path/to/image1.jpg",
+    "image": "https://img.freepik.com/free-photo/top-view-suitcase-travel-with-clothes-watch_23-2149433966.jpg?t=st=1715963652~exp=1715967252~hmac=42bc8a35e97eb57a236e5da5d7a70576c62c7e96e91c63bb33ab4c8ca81520e6&w=1380",
     "inStock": 10
   },
   {
@@ -12,7 +12,7 @@
     "name": "Water Bottle",
     "description": "Stay hydrated on your travels with this leak-proof bottle",
     "price": 24.99,
-    "image": "path/to/image2.jpg",
+    "image": "https://img.freepik.com/free-photo/white-reusable-water-bottle_53876-145536.jpg?t=st=1715963381~exp=1715966981~hmac=06c7d621371543b58ec789883b2467b7f3e98428ef81fba0b60c2b13713aec3c&w=1380",
     "inStock": 20
   },
   {
@@ -20,7 +20,7 @@
     "name": "Travel Pillow",
     "description": "Get a comfortable sleep on the go with this memory foam pillow",
     "price": 39.99,
-    "image": "path/to/image3.jpg",
+    "image": "https://img.freepik.com/free-photo/single-soap-bar-isolated-white-background_93675-135035.jpg?t=st=1715963694~exp=1715967294~hmac=733594ac4267cb6d44334ccca7c850e73d386553bdeb33a38c7eb60adc5b6b2c&w=1380",
     "inStock": 5
   },
   {
@@ -28,7 +28,7 @@
     "name": "Travel Toiletry Bag",
     "description": "Keep your toiletries organized and leak-proof with this handy bag",
     "price": 19.99,
-    "image": "path/to/image4.jpg",
+    "image": "https://img.freepik.com/free-photo/high-angle-toilet-bag-with-products_23-2149879981.jpg?t=st=1715963729~exp=1715967329~hmac=097cc5c878171eb89f365ddba391cd4f93e67de6dadaa83775191fe6bf231f8c&w=1380",
     "inStock": 15
   },
   {
@@ -36,7 +36,7 @@
     "name": "Sunglasses",
     "description": "Protect your eyes in style with these polarized sunglasses",
     "price": 49.99,
-    "image": "path/to/image5.jpg",
+    "image": "https://img.freepik.com/free-photo/colored-transparent-sunglasses-still-life_23-2150163149.jpg?t=st=1715963757~exp=1715967357~hmac=448f57415ad884857a06602f457fad7deacb5ba78480f1ca1c13955733204c7f&w=1380",
     "inStock": 8
   },
   {
@@ -44,7 +44,7 @@
     "name": "Hiking Boots",
     "description": "Durable and comfortable boots for all your outdoor adventures",
     "price": 129.99,
-    "image": "path/to/image6.jpg",
+    "image": "https://img.freepik.com/free-photo/leather-boots_1203-8146.jpg?t=st=1715963777~exp=1715967377~hmac=c0784a4cadf6a2f5d8e4af9c84e7cf865cce4e1561301aa723a5f338feecf75a&w=1380",
     "inStock": 7
   },
   {
@@ -52,7 +52,7 @@
     "name": "Travel Adapter",
     "description": "Stay charged wherever you travel with this universal adapter",
     "price": 29.99,
-    "image": "path/to/image7.jpg",
+    "image": "https://img.freepik.com/free-photo/usb-charging-gadgets-blurred-background-room-close-up-concept-technology-everyday-life_169016-15480.jpg?t=st=1715964005~exp=1715967605~hmac=5f35fbcff9fcfd625333728da87c36022c834105e70cd14a14e840e017fb4194&w=1380",
     "inStock": 12
   },
   {
@@ -60,7 +60,7 @@
     "name": "Noise-Cancelling Headphones",
     "description": "Block out noise and immerse yourself in your music with these headphones",
     "price": 199.99,
-    "image": "path/to/image8.jpg",
+    "image": "https://img.freepik.com/free-photo/still-life-tech-device_23-2150722661.jpg?t=st=1715964032~exp=1715967632~hmac=aec3a0572bccc1f09f87914b639dba60b8f6225cfb7346128c91b290ee68663f&w=1380",
     "is_featured": true,
     "inStock": 3
   },
@@ -69,7 +69,7 @@
     "name": "Travel Journal",
     "description": "Capture your travel memories and experiences in this stylish journal",
     "price": 14.99,
-    "image": "path/to/image9.jpg",
+    "image": "https://img.freepik.com/free-photo/cotton-twig-with-map-notebook-wallet-background_23-2147856116.jpg?t=st=1715964059~exp=1715967659~hmac=bc1c15519100a734805f1ae1561d6848750e7930cf24dd9a49d218af95d92c01&w=1380",
     "inStock": 18
   },
   {
@@ -77,7 +77,7 @@
     "name": "First-Aid Kit",
     "description": "Be prepared for minor injuries with this compact first-aid kit",
     "price": 9.99,
-    "image": "path/to/image10.jpg",
+    "image": "https://img.freepik.com/free-photo/close-up-hand-holding-medicine_23-2148504568.jpg?t=st=1715964078~exp=1715967678~hmac=88bb9ab5e91d8b135a66bca0c4ea442983393729a89ffa43bc1e0d6a0913da44&w=826",
     "inStock": 25
   }
 ]
