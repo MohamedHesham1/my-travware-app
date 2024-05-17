@@ -10,10 +10,25 @@ export default function Home() {
   const [search, setSearch] = useState('');
   const [sortOrder, setSortOrder] = useState('');
   const [priceRange, setPriceRange] = useState([0, 100]);
+  const [cart, setCart] = useState(
+    localStorage.getItem('savedCart')
+      ? JSON.parse(localStorage.getItem('savedCart'))
+      : []
+  );
+
   useEffect(() => {
     setItems(products);
     setFilteredItems(products);
+
+    const savedCart = localStorage.getItem('savedCart');
+    if (savedCart) {
+      setCart(JSON.parse(savedCart));
+    }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('savedCart', JSON.stringify(cart));
+  }, [cart]);
 
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
@@ -31,6 +46,24 @@ export default function Home() {
     const [min, max] = e.target.value.split('-').map(Number);
     setPriceRange([min, max]);
     filterItems(search, sortOrder, [min, max]);
+  };
+
+  const handleAddToCart = (item) => {
+    const existingItem = cart.find((cartItem) => cartItem.id === item.id);
+    if (existingItem) {
+      setCart(
+        cart.map((cartItem) =>
+          cartItem.id === item.id
+            ? {
+                ...cartItem,
+                quantity: Math.min(cartItem.quantity + 1, cartItem.inStock),
+              }
+            : cartItem
+        )
+      );
+    } else {
+      setCart([...cart, { ...item, quantity: 1 }]);
+    }
   };
 
   const filterItems = (searchQuery, order, range) => {
@@ -53,9 +86,10 @@ export default function Home() {
 
     setFilteredItems(filtered);
   };
+
   return (
     <main>
-      <Navbar onChange={handleSearch} value={search} />
+      <Navbar onChange={handleSearch} value={search} cartItems={cart} />
 
       <div className='form-control'>
         <select
@@ -82,7 +116,7 @@ export default function Home() {
         </select>
       </div>
 
-      <div className='grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-items-center gap-4 p-4'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-items-center gap-x-4 gap-y-8 p-4'>
         {filteredItems.map((product) => (
           <ProductCard
             key={product.id}

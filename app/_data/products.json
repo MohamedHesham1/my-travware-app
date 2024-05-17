@@ -4,49 +4,56 @@
     "name": "Travel Backpack",
     "description": "A durable backpack perfect for your adventures",
     "price": 79.99,
-    "image": "path/to/image1.jpg"
+    "image": "path/to/image1.jpg",
+    "inStock": 10
   },
   {
     "id": 2,
     "name": "Water Bottle",
     "description": "Stay hydrated on your travels with this leak-proof bottle",
     "price": 24.99,
-    "image": "path/to/image2.jpg"
+    "image": "path/to/image2.jpg",
+    "inStock": 20
   },
   {
     "id": 3,
     "name": "Travel Pillow",
     "description": "Get a comfortable sleep on the go with this memory foam pillow",
     "price": 39.99,
-    "image": "path/to/image3.jpg"
+    "image": "path/to/image3.jpg",
+    "inStock": 5
   },
   {
     "id": 4,
     "name": "Travel Toiletry Bag",
     "description": "Keep your toiletries organized and leak-proof with this handy bag",
     "price": 19.99,
-    "image": "path/to/image4.jpg"
+    "image": "path/to/image4.jpg",
+    "inStock": 15
   },
   {
     "id": 5,
     "name": "Sunglasses",
     "description": "Protect your eyes in style with these polarized sunglasses",
     "price": 49.99,
-    "image": "path/to/image5.jpg"
+    "image": "path/to/image5.jpg",
+    "inStock": 8
   },
   {
     "id": 6,
     "name": "Hiking Boots",
     "description": "Durable and comfortable boots for all your outdoor adventures",
     "price": 129.99,
-    "image": "path/to/image6.jpg"
+    "image": "path/to/image6.jpg",
+    "inStock": 7
   },
   {
     "id": 7,
     "name": "Travel Adapter",
     "description": "Stay charged wherever you travel with this universal adapter",
     "price": 29.99,
-    "image": "path/to/image7.jpg"
+    "image": "path/to/image7.jpg",
+    "inStock": 12
   },
   {
     "id": 8,
@@ -54,20 +61,23 @@
     "description": "Block out noise and immerse yourself in your music with these headphones",
     "price": 199.99,
     "image": "path/to/image8.jpg",
-    "is_featured": true
+    "is_featured": true,
+    "inStock": 3
   },
   {
     "id": 9,
     "name": "Travel Journal",
     "description": "Capture your travel memories and experiences in this stylish journal",
     "price": 14.99,
-    "image": "path/to/image9.jpg"
+    "image": "path/to/image9.jpg",
+    "inStock": 18
   },
   {
     "id": 10,
     "name": "First-Aid Kit",
     "description": "Be prepared for minor injuries with this compact first-aid kit",
     "price": 9.99,
-    "image": "path/to/image10.jpg"
+    "image": "path/to/image10.jpg",
+    "inStock": 25
   }
 ]

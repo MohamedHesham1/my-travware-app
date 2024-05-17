@@ -1,8 +1,18 @@
-export default function Navbar({ onChange, value }) {
+import Link from 'next/link';
+
+export default function Navbar({ onChange, value, cartItems }) {
+  const totalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
   return (
     <div className='navbar bg-base-100'>
       <div className='flex-1'>
-        <a className='btn btn-ghost text-xl'>E2E Shop</a>
+        <Link className='btn btn-ghost text-xl' href='/'>
+          E2E Shop
+        </Link>
       </div>
       <div className='flex-none gap-2'>
         <div className='form-control'>
@@ -31,7 +41,9 @@ export default function Navbar({ onChange, value }) {
                   d='M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z'
                 />
               </svg>
-              <span className='badge badge-sm indicator-item'>8</span>
+              <span className='badge badge-sm indicator-item'>
+                {totalItems}
+              </span>
             </div>
           </div>
           <div
@@ -39,10 +51,16 @@ export default function Navbar({ onChange, value }) {
             className='mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-100 shadow'
           >
             <div className='card-body'>
-              <span className='font-bold text-lg'>8 Items</span>
-              <span className='text-info'>Subtotal: $999</span>
+              <span className='font-bold text-lg'>{totalItems} Items</span>
+              <span className='text-info'>
+                Subtotal: ${totalPrice.toFixed(2)}
+              </span>
               <div className='card-actions'>
-                <button className='btn btn-primary btn-block'>View cart</button>
+                <Link href='/cart'>
+                  <button className='btn btn-primary btn-block'>
+                    View Cart
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
