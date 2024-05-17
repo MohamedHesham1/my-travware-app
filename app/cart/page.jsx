@@ -63,7 +63,7 @@ export default function Cart() {
   };
 
   return (
-    <div className='p-10 max-w-[1250px]'>
+    <div className='p-10'>
       <h2 className='text-2xl font-bold mb-4'>Shopping Cart</h2>
       <ul className='list-none'>
         {cartItems.map((item) => (
@@ -114,9 +114,9 @@ export default function Cart() {
         ))}
       </ul>
 
-      <div className='flex justify-between items-center mt-4'>
-        <p className='font-bold'>Total: ${total.toFixed(2)}</p>
-        <button className='btn btn-primary' onClick={handleCheckout}>
+      <div className='flex gap-6 items-center mt-8'>
+        <p className='font-bold text-2xl'>Total: ${total.toFixed(2)}</p>
+        <button className='btn btn-primary text-lg' onClick={handleCheckout}>
           Checkout
         </button>
       </div>

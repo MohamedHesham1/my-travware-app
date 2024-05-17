@@ -7,7 +7,7 @@ import './globals.css';
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body>
+      <body className='max-w-[1700px] mx-auto'>
         <SearchProvider>
           <CartProvider>
             <Navbar />

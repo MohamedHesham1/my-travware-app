@@ -74,7 +74,7 @@ export default function Home() {
   };
 
   return (
-    <main className='p-4'>
+    <main className=' mx-auto p-8'>
       <div className='flex flex-col md:flex-row md:justify-between mb-4'>
         <div className='form-control mb-4 md:mb-0'>
           <label className='label'>

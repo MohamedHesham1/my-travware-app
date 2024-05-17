@@ -13,11 +13,12 @@ export default function Navbar() {
   );
 
   return (
-    <nav className='navbar bg-base-100'>
-      <div className='flex-1'>
+    <nav className='navbar bg-base-100 mx-auto max-w-[1700px] p-6'>
+      <div className='flex-1 gap-6'>
         <Link className='btn btn-ghost normal-case text-xl' href='/'>
           TravWare
         </Link>
+
         <input
           type='text'
           placeholder='Search'
